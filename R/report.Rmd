@@ -1,0 +1,151 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  # pdf_document: default
+params:
+  ptbl_os: NA
+  plot_os: NA
+  ptbl_efs: NA
+  plot_efs: NA
+  patprofile: NA
+---
+
+####
+
+# 3-Year Overall Survival Estimates:
+
+```{r echo = FALSE}
+
+params$plot_os
+
+```
+
+####
+
+```{r echo = FALSE}
+
+library(flextable)
+library(knitr)
+
+# flextable(params$ptbl_os) |>
+#     flextable::width(j = 1, width = 1) |>
+#     flextable::width(j = 2:3, width = 2)
+
+kable(params$ptbl_os)
+
+```
+
+####
+
+# 3-Year Event-Free Survival Estimates:
+
+```{r echo = FALSE}
+
+params$plot_efs
+
+```
+
+####
+
+```{r echo = FALSE}
+
+# flextable(params$ptbl_os) |>
+#     flextable::width(j = 1, width = 1) |>
+#     flextable::width(j = 2:3, width = 2)
+
+kable(params$ptbl_efs)
+
+```
+
+#### 
+
+# Patient characteristics:
+
+```{r echo = FALSE}
+
+vnames <- c("age"
+,"male"
+,"racegp"
+,"ethnicit"
+,"karnofraw"
+,"coorgscore"
+,"median_income"
+,"rcmvpos"
+,"venthxpr"
+,"funghxpr"
+,"priauto"
+,"disease"
+,"philgp"
+,"allsubgp"
+,"cytogeneall"
+,"bcrrespr"
+,"aldist"
+,"indcycle"
+,"cytogeneaml"
+,"mdstfaml"
+,"amlrxrel"
+,"clldist"
+,"cll17pab"
+,"cmldist"
+,"ipssrpr"
+,"mdspredisp"
+,"mdsrxrel"
+,"mmissdsdx"
+,"mmcytorisk"
+,"mmdist"
+,"lymresist"
+,"lymsubgp"
+
+,"indxtx"
+,"yeartx"
+,"condclas"
+,"tbigp"
+,"graftgp"
+,"gvhprhrx"
+,"invivotcd"
+)
+
+
+```
+
+```{r echo = FALSE}
+
+dat_fmtfun <- load("../data/dat_fmtfun.rda")
+
+patdat <- dat_fmtfun(params$patprofile)
+
+patdat <- patdat[,vnames]
+
+x <- data.frame(t(patdat))
+names(x) <- "value"
+
+x$vname <- row.names(x)
+
+x$vlab <- NA
+for (i in 1:nrow(x)){
+   if (!is.null(attr(patdat[,x$vname[i]], "label"))){
+      x$vlab[i] <- attr(patdat[,x$vname[i]], "label")
+   }
+}
+
+x <- subset(x, !(value %in% c("-1", "", NA)))
+x <- subset(x, !(vname %in% c("yeartx")))
+x <- subset(x, !(vlab %in% c("", NA)))
+
+x <- x[,c("vlab", "value")]
+names(x) <- c("Patient Characteristic"
+              , "Selected"
+              )
+kable(x
+      ,row.names = FALSE
+      )
+
+
+# flextable(x) |>
+#     flextable::width(j = 1:2, width = 2.5) 
+
+```
+
+
