@@ -58,13 +58,13 @@ mod_enter_transplant_ui <- function(id){
                                   )
                   ,selected = patdat_default$gvhprhrx
     )
-    ,numericInput(inputId = ns("indxtx")
-                  ,label =  "Days from diagnosis to transplant"
-                  ,min = 0
-                  ,max = 100000
-                  ,value = patdat_default$indxtx
-                  ,step = 1
-    )
+    # ,numericInput(inputId = ns("indxtx")
+    #               ,label =  "Days from diagnosis to transplant"
+    #               ,min = 0
+    #               ,max = 100000
+    #               ,value = patdat_default$indxtx
+    #               ,step = 1
+    # )
     ,selectInput(inputId = ns("invivotcd")
                 ,label = "ATG/Campath use"
                 ,choices = list("No" = 0
@@ -107,10 +107,10 @@ mod_enter_transplant_server <- function(id, upload){
                             , selected = upload$selected_df$gvhprhrx
           )
 
-          updateNumericInput(session
-                             , "indxtx"
-                             , value = upload$selected_df$indxtx
-          )
+          # updateNumericInput(session
+          #                    , "indxtx"
+          #                    , value = upload$selected_df$indxtx
+          # )
           updateSelectInput(session
                             , "invivotcd"
                             , selected = upload$selected_df$invivotcd
@@ -123,7 +123,7 @@ mod_enter_transplant_server <- function(id, upload){
                                    ,"tbigp"        = input$tbigp
                                    ,"graftgp"      = input$graftgp
                                    ,"gvhprhrx"     = input$gvhprhrx
-                                   ,"indxtx"       = input$indxtx
+                                   ,"indxtx"       = 210
                                    ,"invivotcd"    = input$invivotcd
                                    )
     })

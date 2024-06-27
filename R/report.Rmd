@@ -1,24 +1,28 @@
 ---
-title: ""
+title: "ASOM (Age/Sex Optimal Matching) Predictions"
 date: "`r Sys.Date()`"
 output:
   html_document: default
   # pdf_document: default
 params:
-  ptbl_os: NA
-  plot_os: NA
-  ptbl_efs: NA
-  plot_efs: NA
+  ptbl1_os: NA
+  plot1_os: NA
+  ptbl1_efs: NA
+  plot1_efs: NA
+  ptbl3_os: NA
+  plot3_os: NA
+  ptbl3_efs: NA
+  plot3_efs: NA
   patprofile: NA
 ---
 
-####
+# 1-Year Survival Estimates:
 
-# 3-Year Overall Survival Estimates:
+## 1-Year Overall Survival:
 
 ```{r echo = FALSE}
 
-params$plot_os
+params$plot3_os
 
 ```
 
@@ -33,17 +37,18 @@ library(knitr)
 #     flextable::width(j = 1, width = 1) |>
 #     flextable::width(j = 2:3, width = 2)
 
-kable(params$ptbl_os)
+kable(params$ptbl3_os)
 
 ```
 
+
 ####
 
-# 3-Year Event-Free Survival Estimates:
+## 1-Year Event-Free Survival:
 
 ```{r echo = FALSE}
 
-params$plot_efs
+params$plot3_efs
 
 ```
 
@@ -55,7 +60,57 @@ params$plot_efs
 #     flextable::width(j = 1, width = 1) |>
 #     flextable::width(j = 2:3, width = 2)
 
-kable(params$ptbl_efs)
+kable(params$ptbl3_efs)
+
+```
+
+####
+
+# 3-Year Survival Estimates:
+
+## 3-Year Overall Survival:
+
+```{r echo = FALSE}
+
+params$plot3_os
+
+```
+
+####
+
+```{r echo = FALSE}
+
+library(flextable)
+library(knitr)
+
+# flextable(params$ptbl_os) |>
+#     flextable::width(j = 1, width = 1) |>
+#     flextable::width(j = 2:3, width = 2)
+
+kable(params$ptbl3_os)
+
+```
+
+
+####
+
+## 3-Year Event-Free Survival:
+
+```{r echo = FALSE}
+
+params$plot3_efs
+
+```
+
+####
+
+```{r echo = FALSE}
+
+# flextable(params$ptbl_os) |>
+#     flextable::width(j = 1, width = 1) |>
+#     flextable::width(j = 2:3, width = 2)
+
+kable(params$ptbl3_efs)
 
 ```
 
@@ -112,7 +167,7 @@ vnames <- c("age"
 
 ```{r echo = FALSE}
 
-dat_fmtfun <- load("../data/dat_fmtfun.rda")
+dat_fmtfun <- readRDS("../data/dat_fmtfun.RDS")
 
 patdat <- dat_fmtfun(params$patprofile)
 

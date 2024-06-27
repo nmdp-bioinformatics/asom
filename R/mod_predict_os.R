@@ -19,7 +19,7 @@ mod_predict_os_ui <- function(id){
 #' @import shiny
 #' @import ggplot2
 #' @noRd
-mod_predict_os_server <- function(id, xtest){
+mod_predict_os_server <- function(id, xtest, pyear){
     moduleServer( id, function(input, output, session){
         ns <- session$ns
 
@@ -33,7 +33,7 @@ mod_predict_os_server <- function(id, xtest){
                              , x.test = xtest$patdat_prep
                              , XPtr = FALSE
                              , K = 1
-                             , events = 3*365
+                             , events = pyear*365
                              , na.rm = TRUE
             )
 
@@ -87,8 +87,8 @@ mod_predict_os_server <- function(id, xtest){
                 geom_errorbar(position = position_dodge(width = 1), size = 0.8) +
                 scale_x_continuous(limits = c(16,62), breaks = seq(18,60,2)) +
                 scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
-                ylab("3-Year Overall Survival") +
-                xlab("Donor Age") +
+                ylab(paste0(pyear, "-Year Overall Survival\n")) +
+                xlab("\nDonor Age") +
                 scale_color_manual(name = "Donor Sex", values = c("tomato", "dodgerblue")) +
                 scale_shape_manual(name = "Donor Sex", values = c(19,17)) +
                 theme_bw() +
