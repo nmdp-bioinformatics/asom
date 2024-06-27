@@ -28,7 +28,7 @@ mod_clean_patprofile_ui <- function(id){
 #' clean_patprofile Server Functions
 #'
 #' @noRd
-mod_clean_patprofile_server <- function(id, patdat, pred_button){
+mod_clean_patprofile_server <- function(id, patdat, pred_button, dondat){
       moduleServer( id, function(input, output, session){
             ns <- session$ns
 
@@ -77,9 +77,9 @@ mod_clean_patprofile_server <- function(id, patdat, pred_button){
                   patdatc$karnofraw[is.na(patdatc$karnofraw)] <- patdat_default$karnofraw
                   patdatc$karnofraw[patdatc$karnofraw < 10  ] <- patdat_default$karnofraw
                   patdatc$karnofraw[patdatc$karnofraw > 100 ] <- patdat_default$karnofraw
-                  patdatc$indxtx[is.na(patdatc$indxtx)  ] <- patdat_default$indxtx
-                  patdatc$indxtx[patdatc$indxtx < 0     ] <- patdat_default$indxtx
-                  patdatc$indxtx[patdatc$indxtx > 100000] <- patdat_default$indxtx
+                  # patdatc$indxtx[is.na(patdatc$indxtx)  ] <- patdat_default$indxtx
+                  # patdatc$indxtx[patdatc$indxtx < 0     ] <- patdat_default$indxtx
+                  # patdatc$indxtx[patdatc$indxtx > 100000] <- patdat_default$indxtx
 
                   patdatc[patdatc %in% 99] <- patdat_default[patdatc %in% 99]
 
@@ -142,7 +142,8 @@ mod_clean_patprofile_server <- function(id, patdat, pred_button){
                   # donor ages for prediction:
                   # urdbmpbdage <- seq(18, 36, 2)
                   # urdbmpbdage <- c(seq(18, 40, 2), seq(44, 60, 4))
-                  urdbmpbdage <- seq(18, 60, 4)
+                  # urdbmpbdage <- seq(18, 60, 4)
+                  urdbmpbdage <- dondat$dages
 
                   for (j in 2:length(urdbmpbdage)) {
                         x.test1 <- rbind(x.test1, x.test2)
