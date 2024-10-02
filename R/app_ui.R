@@ -9,14 +9,16 @@ waiter::waiter_set_theme(html = waiter::spin_3()
 
 options(mc.cores = 8)
 
+data_directory = Sys.getenv("RDS_DATA", "data")
+ 
 # load data:
-zcta_hhinc     <- readRDS(file = "data/zcta_hhinc.RDS")
-patdat_default <- readRDS(file = "data/patdat_default.RDS")
-xtest_names    <- readRDS(file = "data/xtest_vnames.RDS")
-dat_fmtfun     <- readRDS(file = "data/dat_fmtfun.RDS")
-
-nft_os  <- readRDS(file = "data/deadcounter.rds")
-nft_efs <- readRDS(file = "data/efscounter.rds")
+zcta_hhinc     <- readRDS(file = paste0(data_directory, "/zcta_hhinc.RDS"))
+patdat_default <- readRDS(file = paste0(data_directory, "/patdat_default.RDS"))
+xtest_names    <- readRDS(file = paste0(data_directory, "/xtest_vnames.RDS"))
+dat_fmtfun     <- readRDS(file = paste0(data_directory, "/dat_fmtfun.RDS"))
+ 
+nft_os  <- readRDS(file = paste0(data_directory, "/deadcounter.rds"))
+nft_efs <- readRDS(file = paste0(data_directory, "/efscounter.rds"))
 
 #' The application User-Interface
 #'
