@@ -99,6 +99,7 @@ app_server <- function(input, output, session) {
                              ,plot3_efs = r$preds3_efs$plot
 
                              ,patprofile = r$pdatc$patdat_clean
+                             ,dat_fmtfun = dat_fmtfun
               )
               rmarkdown::render("R/report.Rmd"
                                 , output_file = file
