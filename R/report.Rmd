@@ -14,6 +14,7 @@ params:
   ptbl3_efs: NA
   plot3_efs: NA
   patprofile: NA
+  dat_fmtfun: NA
 ---
 
 # 1-Year Survival Estimates:
@@ -167,7 +168,8 @@ vnames <- c("age"
 
 ```{r echo = FALSE}
 
-dat_fmtfun <- readRDS("../data/dat_fmtfun.RDS")
+# dat_fmtfun <- readRDS("../data/dat_fmtfun.RDS")
+dat_fmtfun <- params$dat_fmtfun
 
 patdat <- dat_fmtfun(params$patprofile)
 

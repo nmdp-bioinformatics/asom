@@ -11,7 +11,7 @@
 
 <meta name="author" content="Lisa Rein" />
 
-<meta name="date" content="2024-08-23" />
+<meta name="date" content="2024-10-15" />
 
 <title>README for nmdp.asom</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">README for nmdp.asom</h1>
 <h4 class="author">Lisa Rein</h4>
-<h4 class="date">2024-08-23</h4>
+<h4 class="date">2024-10-15</h4>
 
 </div>
 
@@ -363,21 +363,35 @@ mydir &lt;- &quot;Z:/consulting/Logan_Brent/nmdp.asom&quot;
 setwd(mydir)
 
 list.files(mydir)</code></pre>
-<pre><code>##  [1] &quot;app.R&quot;           &quot;data&quot;            &quot;DESCRIPTION&quot;     &quot;dev&quot;            
-##  [5] &quot;inst&quot;            &quot;man&quot;             &quot;NAMESPACE&quot;       &quot;nmdp.asom.Rproj&quot;
-##  [9] &quot;R&quot;               &quot;README.html&quot;     &quot;README.Rmd&quot;</code></pre>
-<pre class="r"><code># make sure that model objects deadcounter.rds and efscounter.rds are saved in data folder:
-list.files(paste0(mydir, &quot;/data&quot;))</code></pre>
-<pre><code>## [1] &quot;dat_fmtfun.RDS&quot;     &quot;deadcounter.rds&quot;    &quot;efscounter.rds&quot;    
-## [4] &quot;patdat_default.RDS&quot; &quot;xtest_vnames.RDS&quot;   &quot;zcta_hhinc.RDS&quot;</code></pre>
+<pre><code>##  [1] &quot;app.R&quot;           &quot;DESCRIPTION&quot;     &quot;dev&quot;             &quot;inst&quot;           
+##  [5] &quot;man&quot;             &quot;NAMESPACE&quot;       &quot;nmdp.asom.Rproj&quot; &quot;R&quot;              
+##  [9] &quot;README.html&quot;     &quot;README.Rmd&quot;</code></pre>
+<pre class="r"><code># internal app data, sysdata.rda, should be saved in R subfolder:
+list.files(paste0(mydir, &quot;/R&quot;))</code></pre>
+<pre><code>##  [1] &quot;_disable_autoload.R&quot;       &quot;app_config.R&quot;             
+##  [3] &quot;app_server.R&quot;              &quot;app_ui.R&quot;                 
+##  [5] &quot;golem_utils_server.R&quot;      &quot;golem_utils_ui.R&quot;         
+##  [7] &quot;mod_assemble_patprofile.R&quot; &quot;mod_clean_patprofile.R&quot;   
+##  [9] &quot;mod_enter_demo.R&quot;          &quot;mod_enter_disease.R&quot;      
+## [11] &quot;mod_enter_disease_all.R&quot;   &quot;mod_enter_disease_aml.R&quot;  
+## [13] &quot;mod_enter_disease_cll.R&quot;   &quot;mod_enter_disease_cml.R&quot;  
+## [15] &quot;mod_enter_disease_hd.R&quot;    &quot;mod_enter_disease_mds.R&quot;  
+## [17] &quot;mod_enter_disease_mm.R&quot;    &quot;mod_enter_disease_nhl.R&quot;  
+## [19] &quot;mod_enter_donor.R&quot;         &quot;mod_enter_transplant.R&quot;   
+## [21] &quot;mod_predict_efs.R&quot;         &quot;mod_predict_os.R&quot;         
+## [23] &quot;mod_save_patprofile.R&quot;     &quot;mod_upload_patprofile.R&quot;  
+## [25] &quot;report.Rmd&quot;                &quot;run_app.R&quot;                
+## [27] &quot;sysdata.rda&quot;</code></pre>
 <pre class="r"><code># To run the app:
-# Note the model objects are large and the initial load could take a long time:
+# Note the internal app data (includes model objects) is large and the initial load could take a while:
 library(shiny)
 shiny::runApp()
 
 # you should see a message in the console if the app is successfully loading: &#39;Loading nmdp.asom&#39;</code></pre>
 <pre class="r"><code># Dependent packages should automatically be installed/loaded but just in case,
 # app dependencies (also noted in NAMESPACE):
+
+# export(run_app)
 # import(bslib)
 # import(flextable)
 # import(ggplot2)

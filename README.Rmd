@@ -1,7 +1,7 @@
 ---
 title: "README for nmdp.asom"
 author: "Lisa Rein"
-date: "2024-08-23"
+date: "2024-10-15"
 output: html_document
 ---
 
@@ -14,8 +14,8 @@ setwd(mydir)
 
 list.files(mydir)
 
-# make sure that model objects deadcounter.rds and efscounter.rds are saved in data folder:
-list.files(paste0(mydir, "/data"))
+# internal app data, sysdata.rda, should be saved in R subfolder:
+list.files(paste0(mydir, "/R"))
 
 ```
 
@@ -23,7 +23,7 @@ list.files(paste0(mydir, "/data"))
 ```{r eval = FALSE}
 
 # To run the app:
-# Note the model objects are large and the initial load could take a long time:
+# Note the internal app data (includes model objects) is large and the initial load could take a while:
 library(shiny)
 shiny::runApp()
 
@@ -36,6 +36,8 @@ shiny::runApp()
 
 # Dependent packages should automatically be installed/loaded but just in case,
 # app dependencies (also noted in NAMESPACE):
+
+# export(run_app)
 # import(bslib)
 # import(flextable)
 # import(ggplot2)
