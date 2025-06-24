@@ -29,12 +29,16 @@ mod_predict_efs_server <- function(id, xtest, pyear){
 
         ######## EFS PREDICTIONS #########
         observe({
-            preds <- predict(nft_efs
-                             , x.test = xtest$patdat_prep
-                             , XPtr = FALSE
-                             , K = 1
-                             , events = pyear*365
-                             , na.rm = TRUE
+            invisible(
+                capture.output(
+                    preds <- predict(nft_efs
+                                    , x.test = xtest$patdat_prep
+                                    , XPtr = FALSE
+                                    , K = 1
+                                    , events = pyear*365
+                                    , na.rm = TRUE
+                                    )
+                )
             )
 
             ptbl <- data.frame("dmale" = xtest$patdat_prep[,"dmale"]
