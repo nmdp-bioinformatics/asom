@@ -29,12 +29,16 @@ mod_predict_os_server <- function(id, xtest, pyear){
 
         ######## OS PREDICTIONS #########
         observe({
-            preds <- predict(nft_os
-                             , x.test = xtest$patdat_prep
-                             , XPtr = FALSE
-                             , K = 1
-                             , events = pyear*365
-                             , na.rm = TRUE
+            invisible(
+                capture.output(
+                    preds <- predict(nft_os
+                                    , x.test = xtest$patdat_prep
+                                    , XPtr = FALSE
+                                    , K = 1
+                                    , events = pyear*365
+                                    , na.rm = TRUE
+                                    )
+                )
             )
 
             ptbl <- data.frame("dmale" = xtest$patdat_prep[,"dmale"]

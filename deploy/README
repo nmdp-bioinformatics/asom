@@ -1,0 +1,4 @@
+docker build -f Dockerfile_base --progress=plain -t nmdp.asom_base .
+docker build -f Dockerfile --progress=plain -t nmdp.asom:latest .
+docker run -p 80:80 nmdp.asom:latest
+# then go to 127.0.0.1:80
